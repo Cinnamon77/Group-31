@@ -1,0 +1,18 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+       https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <!--图标字段修改，调整为直接存放icon标识-->
+    <changeSet id="20250417_002" author="bookkeeping">
+        <sql>
+            ALTER TABLE `account_category`
+                CHANGE COLUMN `icon_url` `icon` VARCHAR (255) NOT NULL COMMENT '分类图标';
+        </sql>
+        <sql>
+            ALTER TABLE `transaction_category`
+                CHANGE COLUMN `icon_url` `icon` VARCHAR (255) NOT NULL COMMENT '分类图标';
+        </sql>
+    </changeSet>
+</databaseChangeLog>

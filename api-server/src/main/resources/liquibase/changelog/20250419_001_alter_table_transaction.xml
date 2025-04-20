@@ -1,0 +1,14 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+       https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <!--为交易记录单独增加交易日期-->
+    <changeSet id="20250419_001" author="bookkeeping">
+        <sql>
+            ALTER TABLE transaction_record
+                ADD COLUMN transaction_date DATE NOT NULL COMMENT '交易日期' AFTER amount;
+        </sql>
+    </changeSet>
+</databaseChangeLog>

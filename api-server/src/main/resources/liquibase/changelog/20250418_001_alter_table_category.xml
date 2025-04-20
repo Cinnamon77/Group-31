@@ -1,0 +1,18 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+       https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <!--增加user_id字段-->
+    <changeSet id="20250417_001" author="bookkeeping">
+        <sql>
+            ALTER TABLE transaction_category
+                ADD COLUMN user_id BIGINT NOT NULL COMMENT '用户 user.id' AFTER id;
+        </sql>
+        <sql>
+            ALTER TABLE account_category
+                ADD COLUMN user_id BIGINT NOT NULL COMMENT '用户 user.id' AFTER id;
+        </sql>
+    </changeSet>
+</databaseChangeLog>

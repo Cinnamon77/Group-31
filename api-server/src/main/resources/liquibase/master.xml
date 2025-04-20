@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <!--  初始化脚本  -->
+    <include file="classpath:liquibase/changelog/20250417_001_init_table.xml"/>
+    <!--  新增user_id字段  -->
+    <include file="classpath:liquibase/changelog/20250418_001_alter_table_category.xml"/>
+    <!--  图标字段修改，调整为直接存放icon标识 -->
+    <include file="classpath:liquibase/changelog/20250418_002_alter_icon.xml"/>
+    <!-- 为交易记录单独增加交易日期 -->
+    <include file="classpath:liquibase/changelog/20250419_001_alter_table_transaction.xml"/>
+</databaseChangeLog>

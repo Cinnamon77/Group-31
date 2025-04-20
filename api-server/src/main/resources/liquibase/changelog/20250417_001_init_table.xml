@@ -1,0 +1,120 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+       https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <!--初始化表-->
+    <changeSet id="20250417_001" author="bookkeeping">
+        <sql>
+            CREATE TABLE `account_category`
+            (
+                `id`           bigint UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+                `account_name` varchar(50)  NOT NULL COMMENT '分类名称',
+                `icon_url`     varchar(255) NOT NULL COMMENT '分类图标地址',
+                `created_at`   datetime     NOT NULL COMMENT '创建时间',
+                `updated_at`   datetime     NOT NULL COMMENT '修改时间',
+                PRIMARY KEY (`id`)
+            ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COMMENT = '账号类型';
+
+            CREATE TABLE `budget`
+            (
+                `id`            bigint UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+                `user_id`       bigint      NOT NULL COMMENT '用户 user.id',
+                `username`      varchar(20) NOT NULL COMMENT '用户名',
+                `amount`        bigint UNSIGNED NOT NULL COMMENT '预算金额（分）',
+                `budget_month` varchar(20)     NOT NULL COMMENT '预算月份 yyyy-MM格式',
+                `start_date`    date        NOT NULL COMMENT '预算开始日期',
+                `end_date`      date        NOT NULL COMMENT '预算结束日期',
+                `created_at`    datetime    NOT NULL COMMENT '创建时间',
+                `updated_at`    datetime    NOT NULL COMMENT '修改时间',
+                PRIMARY KEY (`id`),
+                INDEX           `idx_uid`(`user_id`)
+            ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COMMENT = '预算表';
+
+            CREATE TABLE `budget_record`
+            (
+                `id`         bigint UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+                `user_id`    bigint      NOT NULL COMMENT '用户 user.id',
+                `username`   varchar(20) NOT NULL COMMENT '用户名',
+                `amount`     bigint UNSIGNED NOT NULL COMMENT '预算金额（分）',
+                `created_at` datetime    NOT NULL COMMENT '创建时间',
+                `updated_at` datetime    NOT NULL COMMENT '修改时间',
+                PRIMARY KEY (`id`)
+            ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COMMENT = '预算记录表';
+
+            CREATE TABLE `notes`
+            (
+                `id`         bigint UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+                `user_id`    bigint       NOT NULL COMMENT '用户 user.id',
+                `content`    varchar(255) NOT NULL COMMENT '备忘内容',
+                `created_at` datetime     NOT NULL COMMENT '创建时间',
+                `updated_at` datetime     NOT NULL COMMENT '修改时间',
+                PRIMARY KEY (`id`),
+                INDEX        `idx_uid`(`user_id`)
+            ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COMMENT = '备忘笔记';
+
+            CREATE TABLE `transaction_category`
+            (
+                `id`            bigint UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+                `category_name` varchar(50)  NOT NULL COMMENT '分类名称',
+                `icon_url`      varchar(255) NOT NULL COMMENT '分类图标地址',
+                `created_at`    datetime     NOT NULL COMMENT '创建时间',
+                `updated_at`    datetime     NOT NULL COMMENT '修改时间',
+                PRIMARY KEY (`id`)
+            ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COMMENT = '交易类型';
+
+            CREATE TABLE `transaction_record`
+            (
+                `id`            bigint UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+                `user_id`       bigint UNSIGNED NOT NULL COMMENT '用户 user.id',
+                `username`      varchar(20)  NOT NULL COMMENT '用户账号',
+                `amount`        bigint       NOT NULL COMMENT '交易金额（分）',
+                `category_name` varchar(50)  NOT NULL COMMENT '分类名称',
+                `category_icon` varchar(255) NOT NULL COMMENT '分类图标',
+                `account_name`  varchar(50)  NOT NULL COMMENT '账号类型名称',
+                `account_icon`  varchar(255) NOT NULL COMMENT '账号类型图标',
+                `created_at`    datetime     NOT NULL COMMENT '创建时间',
+                `updated_at`    datetime     NOT NULL COMMENT '修改时间',
+                PRIMARY KEY (`id`),
+                INDEX           `idx_uid`(`user_id`)
+            ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COMMENT = '交易记录表';
+
+            CREATE TABLE `user`
+            (
+                `id`              bigint UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+                `username`        varchar(20)  NOT NULL COMMENT '用户名',
+                `created_at`      datetime     NOT NULL COMMENT '创建时间',
+                `updated_at`      datetime     NOT NULL COMMENT '修改时间',
+                PRIMARY KEY (`id`)
+            ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COMMENT = '用户信息表';
+
+            CREATE TABLE `user_auth`
+            (
+                `id`         bigint UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+                `user_id`    bigint UNSIGNED NOT NULL COMMENT '用户 user.id',
+                `auth_type`  enum('PASSWORD') NOT NULL COMMENT '认证类型， PASSWORD（密码）',
+                `auth_identifier` varchar(255) NOT NULL COMMENT '认证标识，比如邮箱地址、手机号、第三方账号 ID 等。',
+                `auth_secret`     varchar(255) NULL COMMENT '存储认证密钥',
+                `created_at` datetime NOT NULL COMMENT '创建时间',
+                `updated_at` datetime NOT NULL COMMENT '修改时间',
+                PRIMARY KEY (`id`),
+                INDEX        `idx_uid`(`user_id`)
+            ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COMMENT = '用户认证表';
+
+            CREATE TABLE `wallet`
+            (
+                `id`           bigint UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+                `user_id`      bigint UNSIGNED NOT NULL COMMENT '用户 user.id',
+                `username`     varchar(50)  NOT NULL COMMENT '用户名',
+                `account_name` varchar(50)  NOT NULL COMMENT '账号类型名称',
+                `account_icon` varchar(255) NOT NULL COMMENT '账号类型图标',
+                `balance`      bigint       NOT NULL COMMENT '钱包余额',
+                `created_at`   datetime     NOT NULL COMMENT '创建时间',
+                `updated_at`   datetime     NOT NULL COMMENT '修改时间',
+                PRIMARY KEY (`id`),
+                INDEX          `idx_uid`(`user_id`)
+            ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COMMENT = '钱包信息';
+        </sql>
+    </changeSet>
+</databaseChangeLog>
