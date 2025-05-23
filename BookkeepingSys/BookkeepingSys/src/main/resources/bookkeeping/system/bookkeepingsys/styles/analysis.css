@@ -1,0 +1,88 @@
+.content-container {
+    -fx-background-color: #f5f5f5;
+    -fx-padding: 20px;
+}
+
+.page-title {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+/* 返回按钮样式 */
+.back-button {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-min-width: 100px;
+    -fx-min-height: 40px;
+    -fx-font-size: 16px;
+    -fx-background-radius: 20;
+    -fx-cursor: hand;
+}
+
+.back-button:hover {
+    -fx-background-color: #2980b9;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 8, 0, 0, 0);
+}
+
+/* 分析容器样式 */
+.analysis-container {
+    -fx-background-color: white;
+    -fx-padding: 20px;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 2);
+}
+
+.section-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+    -fx-padding: 0 0 10 0;
+}
+
+/* 加载动画样式 */
+.loading-text {
+    -fx-font-size: 16px;
+    -fx-text-fill: #7f8c8d;
+    -fx-padding: 50 0 0 0;
+}
+
+/* 建议内容样式 */
+.suggestion-scroll {
+    -fx-background-color: transparent;
+    -fx-min-height: 400px;
+}
+
+.suggestion-scroll .viewport {
+    -fx-background-color: transparent;
+}
+
+.suggestion-container {
+    -fx-background-color: #f8f9fa;
+    -fx-padding: 20px;
+    -fx-background-radius: 8px;
+}
+
+.suggestion-text {
+    -fx-font-size: 15px;
+    -fx-text-fill: #2c3e50;
+    -fx-line-spacing: 1.5;
+}
+
+/* 刷新按钮样式 */
+.refresh-button {
+    -fx-background-color: #27ae60;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-min-width: 120px;
+    -fx-min-height: 40px;
+    -fx-font-size: 15px;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+}
+
+.refresh-button:hover {
+    -fx-background-color: #219a52;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 4, 0, 0, 0);
+} 

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import java.time.YearMonth?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="bookkeeping.system.bookkeepingsys.controller.BudgetController"
+      styleClass="content-container"
+      stylesheets="@styles/budget.css"
+      spacing="20">
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <!-- Title and back button -->
+    <HBox alignment="CENTER_LEFT" spacing="10">
+        <Button text="Back" onAction="#handleBack" styleClass="back-button"/>
+        <Label text="Budget Management" styleClass="page-title"/>
+    </HBox>
+
+    <!-- Current month budget status -->
+    <HBox spacing="20">
+        <VBox styleClass="budget-status-container" spacing="15" HBox.hgrow="ALWAYS">
+            <Label text="Current Month Budget Status" styleClass="section-title"/>
+
+            <GridPane hgap="10" vgap="10">
+                <columnConstraints>
+                    <ColumnConstraints minWidth="120"/>
+                    <ColumnConstraints hgrow="ALWAYS"/>
+                </columnConstraints>
+
+                <Label text="Target Month:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <ComboBox fx:id="monthPicker" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                <Label text="Savings Goal:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <HBox spacing="10" alignment="CENTER_LEFT" GridPane.rowIndex="1" GridPane.columnIndex="1">
+                    <TextField fx:id="targetAmountField" promptText="Enter target amount"/>
+                    <Label text="USD"/>
+                </HBox>
+
+                <Label text="Current Savings:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <Label fx:id="currentAmountLabel" text="0.00 USD" styleClass="amount-label"
+                       GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                <Label text="Completion Progress:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                <VBox spacing="5" GridPane.rowIndex="3" GridPane.columnIndex="1">
+                    <ProgressBar fx:id="progressBar" progress="0.0" maxWidth="Infinity"/>
+                    <Label fx:id="progressLabel" text="0%" styleClass="progress-label"/>
+                </VBox>
+            </GridPane>
+
+            <!-- Button area -->
+            <HBox spacing="15" alignment="CENTER_RIGHT">
+                <Button text="Reset Budget" onAction="#handleReset" styleClass="reset-button"/>
+                <Button text="Save Budget" onAction="#handleSave" styleClass="save-button"/>
+            </HBox>
+        </VBox>
+
+        <!-- Additional Information Tabs -->
+        <TabPane styleClass="info-tabs" HBox.hgrow="ALWAYS">
+            <tabs>
+                <Tab text="Festival" closable="false">
+                    <content>
+                        <VBox spacing="10" styleClass="tab-content">
+                            <Label text="Festival Budget Planning" styleClass="tab-title"/>
+                            <HBox spacing="10" alignment="CENTER_RIGHT">
+                                <Button fx:id="getAISuggestionButton" text="Get AI Suggestion" 
+                                        styleClass="ai-suggestion-button"/>
+                            </HBox>
+                            <StackPane VBox.vgrow="ALWAYS">
+                                <TextArea fx:id="festivalNotes" promptText="AI suggestions will appear here..." 
+                                        wrapText="true"/>
+                                <ProgressIndicator fx:id="loadingIndicator" visible="false"/>
+                            </StackPane>
+                        </VBox>
+                    </content>
+                </Tab>
+                <Tab text="Climate" closable="false">
+                    <content>
+                        <VBox spacing="10" styleClass="tab-content">
+                            <Label text="Climate Impact on Budget" styleClass="tab-title"/>
+                            <HBox spacing="10" alignment="CENTER_RIGHT">
+                                <Button fx:id="getClimateAISuggestionButton" text="Get AI Suggestion" 
+                                        styleClass="ai-suggestion-button"/>
+                            </HBox>
+                            <StackPane VBox.vgrow="ALWAYS">
+                                <TextArea fx:id="climateNotes" promptText="AI suggestions will appear here..." 
+                                        wrapText="true"/>
+                                <ProgressIndicator fx:id="climateLoadingIndicator" visible="false"/>
+                            </StackPane>
+                        </VBox>
+                    </content>
+                </Tab>
+                <Tab text="Notes" closable="false">
+                    <content>
+                        <VBox spacing="10" styleClass="tab-content">
+                            <Label text="Budget Notes" styleClass="tab-title"/>
+                            
+                            <!-- Add note section -->
+                            <HBox spacing="10" styleClass="add-note-section">
+                                <TextField fx:id="noteInput" promptText="Enter your note here..." HBox.hgrow="ALWAYS"/>
+                                <Button text="Add Note" onAction="#handleAddNote" styleClass="add-note-button"/>
+                            </HBox>
+                            
+                            <!-- Notes list -->
+                            <ListView fx:id="notesListView" VBox.vgrow="ALWAYS" styleClass="notes-list"/>
+                        </VBox>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </HBox>
+
+    <!-- Historical budget records -->
+    <VBox spacing="10" VBox.vgrow="ALWAYS">
+        <Label text="Budget History" styleClass="section-title"/>
+        <TableView fx:id="budgetTable" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="monthColumn" text="Month" prefWidth="120"/>
+                <TableColumn fx:id="targetColumn" text="Target Amount" prefWidth="120"/>
+                <TableColumn fx:id="currentColumn" text="Current Savings" prefWidth="120"/>
+                <TableColumn fx:id="progressColumn" text="Progress" prefWidth="120"/>
+                <TableColumn fx:id="actionsColumn" text="Actions" prefWidth="100"/>
+            </columns>
+        </TableView>
+    </VBox>
+
+    <!-- Message notification -->
+    <Label fx:id="messageLabel" styleClass="message-label"/>
+</VBox>

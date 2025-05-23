@@ -1,0 +1,6 @@
+id,name,description,type
+08b8d457-677f-4269-9670-d76811c20838,饮食,就是咔哧咔哧吃的,EXPENSE
+961f905e-f81a-406b-a35e-2f5c883bdd9f,交通,就是狂吃狂吃跑的,EXPENSE
+d17891c0-256a-4a7c-9076-15b84e73ebff,购物,就是嘿咻嘿咻花钱的,EXPENSE
+646516b0-a343-44d3-968e-d87fbf816e39,红包,收到了红包-忘本,INCOME
+a9e343de-9d8d-48a0-8520-a0259f16de82,文具,购买文具-学习好吧,EXPENSE

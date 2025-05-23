@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="bookkeeping.system.bookkeepingsys.controller.AnalysisController"
+      styleClass="content-container"
+      stylesheets="@styles/analysis.css"
+      spacing="20">
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <!-- Title and back button -->
+    <HBox alignment="CENTER_LEFT" spacing="10">
+        <Button text="Back" onAction="#handleBack" styleClass="back-button"/>
+        <Label text="AI Financial Analysis" styleClass="page-title"/>
+    </HBox>
+
+    <!-- AI analysis results display area -->
+    <VBox styleClass="analysis-container" spacing="15">
+        <Label text="Your Personalized Financial Analysis" styleClass="section-title"/>
+
+        <!-- Loading animation -->
+        <StackPane fx:id="loadingPane" managed="false" visible="false">
+            <ProgressIndicator />
+            <Label text="Analyzing your transaction data..." styleClass="loading-text"/>
+        </StackPane>
+
+        <!-- AI suggestions display area -->
+        <ScrollPane fitToWidth="true" styleClass="suggestion-scroll">
+            <VBox fx:id="suggestionContainer" styleClass="suggestion-container">
+                <Label fx:id="suggestionLabel" styleClass="suggestion-text" wrapText="true"/>
+            </VBox>
+        </ScrollPane>
+
+        <!-- Refresh button -->
+        <HBox alignment="CENTER" spacing="10">
+            <Button text="Re-analyze" onAction="#handleRefresh" styleClass="refresh-button"/>
+        </HBox>
+    </VBox>
+</VBox>

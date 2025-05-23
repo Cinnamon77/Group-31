@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="bookkeeping.system.bookkeepingsys.controller.RegisterController"
+      stylesheets="@styles/main.css">
+    <padding>
+        <Insets bottom="30.0" left="40.0" right="40.0" top="30.0"/>
+    </padding>
+
+    <VBox alignment="CENTER" styleClass="form-container" spacing="25">
+        <Label text="用户注册" styleClass="title-label"/>
+        
+        <GridPane styleClass="form-grid" alignment="CENTER">
+            <Label text="用户名" styleClass="form-label"
+                   GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <TextField fx:id="usernameField" promptText="请输入用户名"
+                      GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+            
+            <Label text="密码" styleClass="form-label"
+                   GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <PasswordField fx:id="passwordField" promptText="请输入密码"
+                          GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+            
+            <Label text="确认密码" styleClass="form-label"
+                   GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <PasswordField fx:id="confirmPasswordField" promptText="请再次输入密码"
+                          GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+            
+            <Label text="邮箱" styleClass="form-label"
+                   GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+            <TextField fx:id="emailField" promptText="请输入邮箱地址"
+                      GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+        </GridPane>
+
+        <HBox spacing="15" alignment="CENTER">
+            <Button text="注册" onAction="#handleRegister" defaultButton="true"/>
+            <Button text="返回登录" onAction="#switchToLogin"
+                    styleClass="button, secondary-button"/>
+        </HBox>
+
+        <Label fx:id="messageLabel" styleClass="error-label"/>
+    </VBox>
+</VBox> 
