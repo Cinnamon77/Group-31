@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="bookkeeping.system.bookkeepingsys.controller.DashboardController"
+      stylesheets="@styles/main.css">
+    <padding>
+        <Insets bottom="30.0" left="40.0" right="40.0" top="30.0"/>
+    </padding>
+
+    <VBox styleClass="dashboard-header" alignment="CENTER" spacing="10">
+        <Label text="Bookkeeping" styleClass="dashboard-title"/>
+        <HBox alignment="CENTER_RIGHT" spacing="10" styleClass="user-info">
+            <Label fx:id="welcomeLabel" text="Welcome，"/>
+            <Button text="Login out" onAction="#handleLogout" styleClass="button, logout-button"/>
+        </HBox>
+    </VBox>
+
+    <GridPane styleClass="dashboard-grid" hgap="20" vgap="20" alignment="CENTER">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="200" prefWidth="250"/>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="200" prefWidth="250"/>
+        </columnConstraints>
+        
+        <!-- 交易记录按钮 -->
+        <VBox styleClass="dashboard-card" GridPane.columnIndex="0" GridPane.rowIndex="0"
+              onMouseClicked="#handleTransactions">
+            <Label text="Transaction Record" styleClass="card-title"/>
+            <Text text="View and manage all your transaction record" styleClass="card-description"/>
+            <Label text="📊" styleClass="card-icon"/>
+        </VBox>
+
+        <!-- 交易分类按钮 -->
+        <VBox styleClass="dashboard-card" GridPane.columnIndex="1" GridPane.rowIndex="0"
+              onMouseClicked="#handleCategories">
+            <Label text="Transaction classification" styleClass="card-title"/>
+            <Text text="Set up and manage transaction categories" styleClass="card-description"/>
+            <Label text="📑" styleClass="card-icon"/>
+        </VBox>
+
+        <!-- 月度预算按钮 -->
+        <VBox styleClass="dashboard-card" GridPane.columnIndex="0" GridPane.rowIndex="1"
+              onMouseClicked="#handleBudget">
+            <Label text="Monthly budgets" styleClass="card-title"/>
+            <Text text="Set and track your monthly budget" styleClass="card-description"/>
+            <Label text="💰" styleClass="card-icon"/>
+        </VBox>
+
+        <!-- AI分析按钮 -->
+        <VBox styleClass="dashboard-card" GridPane.columnIndex="1" GridPane.rowIndex="1"
+              onMouseClicked="#handleAnalysis">
+            <Label text="AI intelligent analysis" styleClass="card-title"/>
+            <Text text="Get personalized financial advice from an AI assistant" styleClass="card-description"/>
+            <Label text="🤖" styleClass="card-icon"/>
+        </VBox>
+    </GridPane>
+</VBox> 

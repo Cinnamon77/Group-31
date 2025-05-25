@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="bookkeeping.system.bookkeepingsys.controller.LoginController"
+      stylesheets="@styles/main.css">
+    <padding>
+        <Insets bottom="30.0" left="40.0" right="40.0" top="30.0"/>
+    </padding>
+
+    <VBox alignment="CENTER" styleClass="form-container" spacing="25">
+        <Label text="Bookkeeping" styleClass="title-label"/>
+        
+        <GridPane styleClass="form-grid" alignment="CENTER">
+            <Label text="username" styleClass="form-label"
+                   GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <TextField fx:id="usernameField" promptText="Please enter your account."
+                      GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+            
+            <Label text="password" styleClass="form-label"
+                   GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <PasswordField fx:id="passwordField" promptText="Please enter your password."
+                          GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+        </GridPane>
+
+        <HBox spacing="15" alignment="CENTER">
+            <Button text="sign in" onAction="#handleLogin" defaultButton="true"/>
+            <Button text="sign up" onAction="#switchToRegister"
+                    styleClass="button, secondary-button"/>
+        </HBox>
+
+        <Label fx:id="messageLabel" styleClass="error-label"/>
+    </VBox>
+</VBox> 
